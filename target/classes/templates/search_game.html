@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link href="../static/bootstrap-5.0.2-dist/css/bootstrap.min.css" rel="stylesheet">
+    <title >Поиск игры</title>
+    <link th:rel="stylesheet" th:href="@{static/bootstrap-select-1.13.9/dist/css/bootstrap-select.css}"/>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+    <link rel="stylesheet" href="static/style.css">
+    <script>
+        $(document).ready(function() {
+  $("#input-id").rating({min:0, max:10, step:2, size:'lg'});
+
+});
+    </script>
+</head>
+<body>
+<div th:replace="~{fragments/header :: header}"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 mt-5">
+            <h3>Поиск игр</h3>
+            <form method="post" th:action="@{/searchGame}" th:object="${game}">
+                <input type="text" class="form-control w-100 mt-1 md-2" name="name" placeholder="Укажите название игры">
+                <div class="form-group">
+                    <span>Рейтинг от:</span>
+                <input id="input-id" name="rating" type="number" required="false" class="mt-1 md-1" min=0 max=10 step=1 data-size="lg" value='0' placeholder="Укажите рейтинг игры" >
+                </div>
+                    <div class="form-group">
+                    <label for="type">Выберите тип</label>
+                    <select name="type" class="form-control selectpicker"  id="type">
+                        <option value="">Ничего не выбрано</option>
+                        <option th:each="type : ${T(ru.project.BoardGames.Models.Type).values()}"
+                                th:value="${type}"
+                                th:text="${type.displayValue}">
+                        </option>
+
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="categories">Выберите категории</label>
+                    <select name="categories" class="form-control selectpicker" id="categories" multiple>
+                        <option value="">Ничего не выбрано</option>
+                        <option th:each="category : ${T(ru.project.BoardGames.Models.Category).values()}"
+                                th:value="${category}"
+                                th:text="${category.displayValue}">Категория
+                        </option>
+
+                    </select>
+                </div>
+
+                <button class="btn btn-primary" type="submit">Найти</button>
+            </form>
+        </div>
+    </div>
+
+</div>
+<div th:replace="~{fragments/footer :: footer}"></div>
+<script th:src="@{/webjars/jquery/3.1.1/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{static/bootstrap-select-1.13.9/dist/js/bootstrap-select.js}"></script>
+<script th:src="@{/static/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

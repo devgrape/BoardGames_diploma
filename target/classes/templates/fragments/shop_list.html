@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Game list</title>
+</head>
+<body>
+<div class="shop__list" th:fragment="shop__list" th:if="${gameShops}">
+        <th:block th:each="gameShop : ${gameShops}">
+            <hr class="p-0 m-0">
+            <p  th:utext="${gameShop.price}" class="m-0 p-0 price-pro"></p>-->
+            <a th:href="${gameShop.href}"> <p th:utext="${gameShop.shop}" class="m-0 p-0 price-pro"></p></a>
+        </th:block>
+</div>
+</body>
+</html>

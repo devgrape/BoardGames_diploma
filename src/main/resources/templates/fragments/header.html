@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Header</title>
+    <link href="../static/bootstrap-5.0.2-dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<header class="border-bottom mb-3" th:fragment="header">
+        <div class="d-flex flex-wrap align-items-center justify-content-between">
+            <div class="d-flex align-items-center justify-content-center" >
+            <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
+                <img class="bi" width="250" height="80" role="img" aria-label="Bootstrap" th:src="@{/static/download.gif}"/>
+            </a>
+
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                <li><a href="/" class="nav-link px-3 link-body-emphasis fs-4"  style="text-decoration: none; color: black;">Каталог игр</a></li>
+                <li><a href="/gamesTop" class="nav-link px-3 link-body-emphasi fs-4" style="text-decoration: none; color: black" >Топ</a></li>
+                <li sec:authorize="isAuthenticated()"><a th:href="@{/friends}" class="nav-link px-3 link-body-emphasis fs-4" style="text-decoration: none; color: black" >Друзья</a></li>
+                <li sec:authorize="isAuthenticated()"><a th:href="@{/profile/{username}(username = ${user.username})}" class="nav-link px-3 link-body-emphasis fs-4" style="text-decoration: none; color: black" >Профиль</a></li>
+            </ul>
+            </div>
+            <div class="d-flex m-3  align-items-center">
+            <form th:action="@{/search}" method="get"  class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+                <input type="text" name="keyword"  th:value="${keyword}" class="form-control" placeholder="Поиск..." aria-label="Search">
+            </form>
+            <div class="flex-shrink-0 dropdown">
+                <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+<!--                    <img sec:authorize="isAuthenticated()" th:src="@{/img/{filename}(filename = ${user.filename})}" alt="mdo" width="32" height="32" class="rounded-circle">-->
+                </a>
+                <ul class="dropdown-menu text-small shadow" style="">
+<!--                    <li sec:authorize="isAuthenticated()"><a class="dropdown-item" th:text="Профиль" th:href="@{/profile}"></a></li>-->
+                    <li sec:authorize="isAuthenticated()"><a class="dropdown-item" th:text="Настройки" th:href="@{/settings}"></a></li>
+<!--                    <li sec:authorize="isAuthenticated()"><a class="dropdown-item" th:text="Моя коллекция" th:href="@{/collection}">Моя коллекция</a></li>-->
+                    <li sec:authorize="hasAuthority('ADMIN')"><a class="dropdown-item" th:text="Администраторам" th:href="@{/admin}"></a></li>
+                    <li sec:authorize="isAuthenticated()"><hr class="dropdown-divider"></li>
+                    <li sec:authorize="!isAuthenticated()"><a class="dropdown-item" th:text="Войти" th:href="@{/login}">Войти</a></li>
+                <li sec:authorize="isAuthenticated()"><form class="dropdown-item" th:action="@{/logout}" method="post">
+                    <input type="submit" value="Выйти" />
+                </form></li>
+                </ul>
+            </div>
+            </div>
+        </div>
+</header>
+</body>
+</html>

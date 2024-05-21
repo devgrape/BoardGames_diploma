@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml"
+      xmlns:width="http://www.w3.org/1999/xhtml" xmlns:tx="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавление отзыва</title>
+    <style>
+
+        .star-rating{
+         font-size: 0;
+        }
+        .star-rating__wrap{
+         display: inline-block;
+         font-size: 1rem;
+        }
+        .star-rating__wrap:after{
+         content: "";
+         display: table;
+         clear: both;
+        }
+        .star-rating__ico{
+         float: right;
+         padding-left: 2px;
+         cursor: pointer;
+         color: #FFB300;
+        }
+        .star-rating__ico:last-child{
+         padding-left: 0;
+        }
+        .star-rating__input{
+         display: none;
+        }
+        .star-rating__ico:hover:before,
+        .star-rating__ico:hover ~ .star-rating__ico:before,
+        .star-rating__input:checked ~ .star-rating__ico:before
+        {
+         content: "\f005";
+        }
+    </style>
+
+</head>
+
+<body>
+<div style="container w-50 h-25"  th:fragment="review__add">
+    <div style="font-weight: 800" class="game__add__label"  th:fragment="shop__list">Добавить отзыв</div>
+    <div id="collapseExample" class="form-group">
+        <form method="post"  class="pt-2 pd-2" th:action="@{/addReview/game/{id}(id = ${game.id})}" th:object="${review}" >
+            <div class="form-group">
+                <label>Ваша оценка:</label>
+                <input th:if="${review == null}" name="rating" type="number" required="true" class="mt-1 md-1 w-25" min=0 max=10 step=1 data-size="lg" value="0" placeholder="Оцените игру" >
+                <div th:if="${review != null}">
+                    <span th:text="${review.rating}"></span>
+                    <br>
+                    <input id="input-id"  name="rating" type="number" required="false" class="mt-1 md-1 w-25" min=0 max=10 step=1 data-size="lg" placeholder="Измените оценку">
+                </div>
+            </div>
+            <input th:if="${review == null}" type="text" class="form-control form-control-lg w-75 mt-1 md-1" required="true" name="text" placeholder="Укажите отзыв">
+            <input th:if="${review.text}" th:value="${review.text}"  type="text" class="form-control form-control-lg w-75 mt-1 md-1" required="true" name="text" placeholder="Укажите отзыв">
+
+            <button type="submit" style="background-color: #E48586; padding: .3em 1.5em; border-color: #261414; border: 4px; border-radius: 5px;" class="mt-1 md-1 insert__form__button">Добавить</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

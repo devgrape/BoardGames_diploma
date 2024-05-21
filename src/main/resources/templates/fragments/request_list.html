@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>User list</title>
+</head>
+<body>
+<div class="user__list" th:fragment="user__list">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        <th:block th:each="friend : ${friends}">
+            <div class="col" style="width: 20%; height: 20%">
+                <div class="card my-2" style="background-color: #9dc4c4; color: #ffffff">
+                    <div th:if="${friend.filename}">
+                        <a th:href="@{/user/{username}(username=${friend.username})}">
+                            <img class="card-img-top" th:src="@{/img/{filename}(filename = ${friend.filename})}">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </th:block>
+    </div>
+</div>
+
+</body>
+</html>

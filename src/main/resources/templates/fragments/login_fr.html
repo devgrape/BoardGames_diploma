@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Login fragments</title>
+</head>
+<body>
+
+<div class="login__window"  th:fragment="login__fr">
+    <div style="color: #1a150a; font-weight: 550" th:if="${param.error}">
+        Неправильный логин или пароль
+    </div>
+    <div style="color: #1a150a; font-weight: 550" th:if="${param.logout}">
+        Вы вышли из системы.
+    </div>
+    <div th:if="${messageOfLogin}">
+        <div class="my-1">
+            <span style="color: #1a150a; font-weight: 550" th:utext="${messageOfLogin}"></span>
+        </div>
+    </div>
+    <form th:action="@{/login}" method="post">
+        <div class="mb-3">
+            <label for="username" class="form-label fs-5"> Имя пользователя или почта: </label>
+            <input type="text" id="username" class="form-control form-control-lg" name="username"/>
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label fs-5"> Пароль: </label>
+            <input type="password" class="form-control form-control-lg" id="password" name="password"/>
+        </div>
+        <div class="mb-3">
+            <label>
+                <input id="remember-me"
+                       name="remember-me"
+                       type="checkbox"/> Запомнить меня
+            </label>
+        </div>
+        <div><input type="submit" class="btn btn-dark w-25 fs-5" style="padding: .3em 1.5em; border-color: #261414; border: 4px; border-radius: 5px;" value="Войти"/></div>
+    </form>
+</div>
+
+</body>
+</html>

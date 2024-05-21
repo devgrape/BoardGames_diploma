@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml"
+      xmlns:width="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавление игры</title>
+    <link href="../static/bootstrap-5.0.2-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link th:rel="stylesheet" th:href="@{../static/bootstrap-select-1.13.9/dist/css/bootstrap-select.css}"/>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+<div th:replace="~{fragments/header :: header}"></div>
+<div style="container w-50 h-25">
+    <div style="font-weight: 800" class="game__add__label">Добавить игру</div>
+    <div class="registration-error" th:if="${message}">
+        <span  style="color: #AD15C1; font-weight: 800" class="error-message" th:utext="${message}"></span>
+    </div>
+    <div id="collapseExample" class="form-group">
+        <form method="post"  class="pt-2 pd-2" th:action="@{/admin/addGame}" th:object="${game}" enctype="multipart/form-data">
+            <input type="text" class="form-control w-50 mt-1 md-1" required="true" name="name" placeholder="Укажите название игры">
+            <input type="text" class="form-control w-50 mt-1 md-1" required="false" name="description" placeholder="Укажите описание">
+
+            <div class="form-group">
+                <label for="type">Выберите тип</label>
+                <select name="type" class="form-control selectpicker" id="type" required>
+                    <option value="">Nothing selected</option>
+                    <option th:each="type : ${T(ru.project.BoardGames.Models.Type).values()}"
+                            th:value="${type}"
+                            th:text="${type.displayValue}">
+                    </option>
+
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="categories">Выберите категорию</label>
+                <select name="categories" class="form-control selectpicker" id="categories" required multiple>
+
+                    <option th:each="category : ${T(ru.project.BoardGames.Models.Category).values()}"
+                            th:value="${category}"
+                            th:text="${category.displayValue}">Категория
+                    </option>
+
+                </select>
+            </div>
+            <input type="text" class="form-control w-50 mt-1 md-1" name="timeGame" required="true" placeholder="Укажите время игры в минутах ">
+            <input type="text" class="form-control w-50 mt-1 md-1" name="numberPlayers" required="true" placeholder="Укажите количество игроков в формате от-до">
+            <input type="text" class="form-control w-50 mt-1 md-1" name="agePlayers" required="true" placeholder="Укажите возрастные рамки">
+
+            <input type="file" name="file" class="form-control mt-1 md-1">
+
+            <button type="submit" style="background-color: #E48586; padding: .3em 1.5em; border-color: #261414; border: 4px; border-radius: 5px;" class="mt-1 md-1 insert__form__button">Добавить</button>
+        </form>
+    </div>
+</div>
+<div th:replace="~{fragments/footer :: footer}"></div>
+<script th:src="@{/webjars/jquery/3.1.1/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{../static/bootstrap-select-1.13.9/dist/js/bootstrap-select.js}"></script>
+<script th:src="@{../static/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

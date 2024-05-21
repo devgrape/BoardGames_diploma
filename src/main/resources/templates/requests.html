@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link href="static/bootstrap-5.0.2-dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Друзья</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+<div th:replace="~{fragments/header :: header}"></div>
+<div style="font-weight: 800; font-size: 25px; color: #261414" class="game__list__header mt-3 md-1">Заявки в друзья</div>
+<ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+    <li><a href="/friends" class="nav-link px-3 link-body-emphasi fs-4" style="text-decoration: none; color: black" >Друзья</a></li>
+    <li><a href="/followers" class="nav-link px-3 link-body-emphasi fs-4" style="text-decoration: none; color: black" >Подписчики</a></li>
+    <li><a href="/requests" class="nav-link px-3 link-body-emphasis fs-4" style="text-decoration: none; color: black">Заявки</a></li>
+</ul>
+<div th:replace="~{fragments/request_list :: request__list}"></div>
+<div th:replace="~{fragments/footer :: footer}"></div>
+<script th:src="@{/static/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

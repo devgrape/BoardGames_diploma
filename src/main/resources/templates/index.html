@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link href="static/bootstrap-5.0.2-dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Настольные игры</title>
+    <link rel="icon" th:href="@{/static/favicon.ico}" type="image/x-icon">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div th:replace="~{fragments/header :: header}"></div>
+<div style="font-weight: 800; font-size: 25px; color: #261414" class="game__list__header mt-3 md-1">Каталог игр</div>
+<div th:replace="~{fragments/game_list :: game__list}"></div>
+<div th:replace="~{fragments/footer :: footer}"></div>
+</footer>
+<script th:src="@{/static/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

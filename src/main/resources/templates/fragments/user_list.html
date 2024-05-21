@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Управление пользователями</title>
+</head>
+<body>
+<div class="user__list" th:fragment="user__list">
+    <table style="">
+        <thead>
+        <tr>
+            <th><b>Имя</b></th>
+            <th><b>Почта</b></th>
+            <th><b>Роль</b></th>
+            <th><b>Редактирование</b></th>
+        </tr>
+        </thead>
+        <tbody>
+        <th:block th:each="user : ${users}">
+            <tr>
+                <td th:utext="${user.username}" style="padding: 7px;">
+                <td th:utext="${user.email}" style="padding: 7px;">
+                <td th:utext="${user.roles}" style="padding: 7px;">
+                <td><a th:href="'/admin/manageUsers/user/' + ${user.id}">
+                <img width="50" height="40" th:src="@{/static/edit.png}" />
+            </a></td>
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

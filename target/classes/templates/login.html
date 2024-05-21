@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title> Вход на BoardGames </title>
+    <link href="static/bootstrap-5.0.2-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="d-flex align-items-center min-vh-100">
+<div class="container">
+    <h3 style="font-weight: 550" class="text-center w-100 m-1">Вход на BoardGames</h3>
+    <div class="d-flex flex-column gap-3">
+    <div th:replace="~{fragments/login_fr :: login__fr}"></div>
+    <a th:href="@{/registration}" style="text-decoration: none; color: #1a150a; font-weight: 550" class="registration__to-login fs-5">Зарегистрироваться</a>
+</div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Game list</title>
+</head>
+<body>
+<div class="shop__list" th:fragment="review__list" th:if="${reviews}">
+    <th:block th:each="review : ${reviews}">
+        <hr class="p-0 m-0">
+        <p th:utext="Отзыв от пользователя ${review.username}"></p>
+        <p th:utext="${review.rating}"></p>
+        <p th:utext="${review.text}"></p>
+    </th:block>
+</div>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link href="static/bootstrap-5.0.2-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="icon" th:href="@{/static/favicon.ico}" type="image/x-icon">
+    <title>Мой профиль</title>
+</head>
+<body>
+<div th:replace="~{fragments/header :: header}"></div>
+<div class="container">
+    <div class="d-flex ">
+        <div style="width: 30%">
+                <img th:src="@{/img/{filename}(filename = ${user.filename})}" alt="mdo" width="70%" height="60%">
+                <form method="post"  th:action="@{/settings/setUserImage}" th:object="${user}" enctype="multipart/form-data">
+                    <span>Изменить фото профиля</span>
+                    <input type="file" name="file" class="form-control form-control-sm mt-1 md-1 w-50" >
+                    <button type="submit" style="border-color: #261414; border: 4px; border-radius: 5px; width: 50%; height:30%" class="mt-1 md-1 insert__form__button btn btn-dark">Изменить</button>
+                </form>
+        </div>
+        <div class="d-flex flex-column">
+            <th:block th:each="role : ${user.roles}">
+                <h2 th:utext="'Вы ' + ${role.displayValue} + ' с логином: ' + ${user.username}" style="font-size: 25px; font-weight: 500"></h2>
+
+            </th:block>
+            <span th:text="${user.privacy == true} ? 'Приватность: данные доступны только друзьям' : 'Приватность: данные доступны всем'"></span>
+            <form method="post"  th:action="@{/settings/setPrivacy}" th:object="${user}">
+                <label>
+                    <input  type="checkbox" th:value="*{privacy}" th:name="privacy"/> Приватность аккаута
+                </label>
+                <button type="submit" style="border-color: #261414; border: 4px; border-radius: 5px; width: 30%; height:60%" class="mt-1 md-1 insert__form__button btn btn-dark">Изменить</button>
+            </form>
+        </div>
+    </div>
+    <div th:if="${messageP}">
+        <span style="color: #8e0000; font-weight: 500" th:utext="${messageP}"></span>
+    </div>
+    <h3 style="font-weight: 800; font-size: 25px;">Редактирование Данных</h3>
+    <div th:replace="~{fragments/user_edit :: user__edit2}"></div>
+</div>
+<div th:replace="~{fragments/footer :: footer}"></div>
+<script th:src="@{/static/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

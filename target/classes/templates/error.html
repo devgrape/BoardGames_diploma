@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>0 . 0</title>
+    <link href="static/bootstrap-5.0.2-dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div th:replace="~{fragments/header :: header}"></div>
+<div class="d-flex flex-column justify-content-center align-items-center">
+<p th:utext="${message}"></p>
+<img width="40%" height="30%" th:src="@{/static/cat.jpg}" />
+</div>
+<div th:replace="~{fragments/footer :: footer}"></div>
+<script th:src="@{/static/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

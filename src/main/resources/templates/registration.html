@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title> Регистрация </title>
+    <link href="static/bootstrap-5.0.2-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="d-flex align-items-center min-vh-100">
+<div class="container">
+    <h3 class="m-1 w-100 text-center" style="font-weight: 550">Страница Регистрации</h3>
+    <div class="d-flex flex-column gap-3">
+    <div th:replace="~{fragments/registration_fr :: registration_fr}"></div>
+    <a th:href="@{/login}" style="text-decoration: none; color: #261414; font-weight: 550;" class="registration__to-login fs-5">Вернуться на страницу авторизации</a>
+    </div>
+</div>
+</div>
+<script th:src="@{/static/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>
