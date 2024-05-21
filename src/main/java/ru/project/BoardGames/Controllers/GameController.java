@@ -2,8 +2,6 @@ package ru.project.BoardGames.Controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -11,20 +9,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import ru.project.BoardGames.Models.*;
-import ru.project.BoardGames.Repositories.CollectionRepository;
-import ru.project.BoardGames.Repositories.GameRepository;
 import ru.project.BoardGames.Repositories.GameShopRepository;
 import ru.project.BoardGames.Services.FriendService;
 import ru.project.BoardGames.Services.GameService;
 import ru.project.BoardGames.Services.UserService;
 
-import java.io.File;
+
 import java.io.IOException;
-import java.nio.file.Paths;
+
 import java.util.*;
 
-import static ru.project.BoardGames.Services.GameShopService.*;
-import static ru.project.BoardGames.Services.GameShopService.getGameYandexMarket;
+
 
 @Controller
 public class GameController {

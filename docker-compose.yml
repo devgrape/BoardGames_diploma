@@ -50,7 +50,7 @@ services:
 #    depends_on:
 #      - db
     environment:
-      - SERVER_PORT= 8888
+#      - SERVER_PORT= 8888
 #      - SPRING_DATASOURCE_URL=jdbc:postgresql://db/boardgames
 
 volumes:
